@@ -33,6 +33,8 @@ Route::middleware('auth', CheckAuth::class)->prefix('admin/product')->group(func
     Route::get('/', [AdminProductController::class, 'index'])->name('product.index');
     Route::get('/create', [AdminProductController::class, 'create'])->name('product.create');
     Route::post('/store', [AdminProductController::class, 'store'])->name('product.store');
+    Route::get('/edit/{id}', [AdminProductController::class, 'edit'])->name('product.edit');
+    Route::put('/update/{id}', [AdminProductController::class, 'update'])->name('product.update');
     Route::delete('/destroy/{id}', [AdminProductController::class, 'destroy'])->name('product.destroy');
 });
 

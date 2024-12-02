@@ -30,7 +30,7 @@
                         <td>{{ $product->category->name }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <a href="" class="btn btn-primary me-2">
+                                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary me-2">
                                     Edit
                                 </a>
                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">

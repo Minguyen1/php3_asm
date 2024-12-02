@@ -70,17 +70,35 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $products = Products::findOrFail($id);
+
+        $categories = Categories::all();
+
+        return view('admin.product.edit', compact('products', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $products = Products::findOrFail($id);
+
+        $data = $request->except('img');
+        if($request->hasFile('img')){
+            $img_path = $request->file('img')->store('image', 'public');
+            $data['img'] = $img_path;
+        }
+
+        if($products->img){
+            Storage::delete('public/' . $products->img);
+        }
+
+        $products->update($data);
+
+        return redirect()->route('product.index')->with('success', 'Cập nhật thành công');
     }
 
     /**
