@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container">
+        <a href="{{ route('user.index') }}" class="btn btn-primary my-5">List User</a>
         <a href="{{ route('product.create') }}" class="btn btn-primary my-5 float-end">Create</a>
         <table class="table">
             <thead>

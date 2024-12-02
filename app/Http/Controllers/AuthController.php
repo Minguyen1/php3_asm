@@ -20,12 +20,13 @@ class AuthController extends Controller
         ]);
 
         if(Auth::attempt($data)){
+            dd(Auth::user());
             if(Auth::user()->role == 'admin'){
                 return redirect()->route('admin/product');
             }
             return redirect()->route('home');
         }
-
+        dd('Thất bại');
         return back()->withErrors(['email' => 'Thông tin đăng nhập không chính xác'])->withInput();
     }
 
@@ -41,7 +42,7 @@ class AuthController extends Controller
             'password_confirm' => ['required', 'same:password'],
         ]);
 
-        ModelsUser::query()->create($data);
+        User::query()->create($data);
 
         return redirect()->route('login')->with('message', 'Đăng ký thành công');
     }

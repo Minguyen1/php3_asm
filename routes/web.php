@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DetailController;
@@ -36,6 +37,8 @@ Route::middleware('auth', CheckAuth::class)->prefix('admin/product')->group(func
     Route::get('/edit/{id}', [AdminProductController::class, 'edit'])->name('product.edit');
     Route::put('/update/{id}', [AdminProductController::class, 'update'])->name('product.update');
     Route::delete('/destroy/{id}', [AdminProductController::class, 'destroy'])->name('product.destroy');
+
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
